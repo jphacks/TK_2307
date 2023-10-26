@@ -7,22 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43561C302AEA87EC00918A7F /* train_window_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C2F2AEA87EC00918A7F /* train_window_appApp.swift */; };
-		43561C322AEA87EC00918A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C312AEA87EC00918A7F /* ContentView.swift */; };
-		43561C342AEA87ED00918A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43561C332AEA87ED00918A7F /* Assets.xcassets */; };
-		43561C372AEA87ED00918A7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43561C362AEA87ED00918A7F /* Preview Assets.xcassets */; };
+		43561C692AEA8CF200918A7F /* train_window_appApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C682AEA8CF200918A7F /* train_window_appApp.swift */; };
+		43561C6B2AEA8CF200918A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C6A2AEA8CF200918A7F /* ContentView.swift */; };
+		43561C6D2AEA8CF300918A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43561C6C2AEA8CF300918A7F /* Assets.xcassets */; };
+		43561C702AEA8CF300918A7F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43561C6F2AEA8CF300918A7F /* Preview Assets.xcassets */; };
+		43561C772AEA8EF700918A7F /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C762AEA8EF700918A7F /* HomePageView.swift */; };
+		43561C7C2AEA910700918A7F /* MapPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C7B2AEA910700918A7F /* MapPageView.swift */; };
+		43561C7E2AEA914C00918A7F /* SharePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43561C7D2AEA914C00918A7F /* SharePageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43561C2C2AEA87EC00918A7F /* train-window-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "train-window-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		43561C2F2AEA87EC00918A7F /* train_window_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = train_window_appApp.swift; sourceTree = "<group>"; };
-		43561C312AEA87EC00918A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		43561C332AEA87ED00918A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		43561C362AEA87ED00918A7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43561C652AEA8CF200918A7F /* train-window-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "train-window-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		43561C682AEA8CF200918A7F /* train_window_appApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = train_window_appApp.swift; sourceTree = "<group>"; };
+		43561C6A2AEA8CF200918A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		43561C6C2AEA8CF300918A7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		43561C6F2AEA8CF300918A7F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43561C762AEA8EF700918A7F /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		43561C7B2AEA910700918A7F /* MapPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPageView.swift; sourceTree = "<group>"; };
+		43561C7D2AEA914C00918A7F /* SharePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		43561C292AEA87EC00918A7F /* Frameworks */ = {
+		43561C622AEA8CF200918A7F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,51 +38,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43561C232AEA87EC00918A7F = {
+		43561C5C2AEA8CF200918A7F = {
 			isa = PBXGroup;
 			children = (
-				43561C2E2AEA87EC00918A7F /* train-window-app */,
-				43561C2D2AEA87EC00918A7F /* Products */,
+				43561C672AEA8CF200918A7F /* train-window-app */,
+				43561C662AEA8CF200918A7F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		43561C2D2AEA87EC00918A7F /* Products */ = {
+		43561C662AEA8CF200918A7F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43561C2C2AEA87EC00918A7F /* train-window-app.app */,
+				43561C652AEA8CF200918A7F /* train-window-app.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		43561C2E2AEA87EC00918A7F /* train-window-app */ = {
+		43561C672AEA8CF200918A7F /* train-window-app */ = {
 			isa = PBXGroup;
 			children = (
-				43561C2F2AEA87EC00918A7F /* train_window_appApp.swift */,
-				43561C312AEA87EC00918A7F /* ContentView.swift */,
-				43561C332AEA87ED00918A7F /* Assets.xcassets */,
-				43561C352AEA87ED00918A7F /* Preview Content */,
+				43561C682AEA8CF200918A7F /* train_window_appApp.swift */,
+				43561C6A2AEA8CF200918A7F /* ContentView.swift */,
+				43561C7A2AEA8F1200918A7F /* Model */,
+				43561C792AEA8F0A00918A7F /* ViewModel */,
+				43561C782AEA8EFC00918A7F /* View */,
+				43561C6C2AEA8CF300918A7F /* Assets.xcassets */,
+				43561C6E2AEA8CF300918A7F /* Preview Content */,
 			);
 			path = "train-window-app";
 			sourceTree = "<group>";
 		};
-		43561C352AEA87ED00918A7F /* Preview Content */ = {
+		43561C6E2AEA8CF300918A7F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				43561C362AEA87ED00918A7F /* Preview Assets.xcassets */,
+				43561C6F2AEA8CF300918A7F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		43561C782AEA8EFC00918A7F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				43561C762AEA8EF700918A7F /* HomePageView.swift */,
+				43561C7D2AEA914C00918A7F /* SharePageView.swift */,
+				43561C7B2AEA910700918A7F /* MapPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		43561C792AEA8F0A00918A7F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		43561C7A2AEA8F1200918A7F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43561C2B2AEA87EC00918A7F /* train-window-app */ = {
+		43561C642AEA8CF200918A7F /* train-window-app */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43561C3A2AEA87ED00918A7F /* Build configuration list for PBXNativeTarget "train-window-app" */;
+			buildConfigurationList = 43561C732AEA8CF300918A7F /* Build configuration list for PBXNativeTarget "train-window-app" */;
 			buildPhases = (
-				43561C282AEA87EC00918A7F /* Sources */,
-				43561C292AEA87EC00918A7F /* Frameworks */,
-				43561C2A2AEA87EC00918A7F /* Resources */,
+				43561C612AEA8CF200918A7F /* Sources */,
+				43561C622AEA8CF200918A7F /* Frameworks */,
+				43561C632AEA8CF200918A7F /* Resources */,
 			);
 			buildRules = (
 			);
@@ -84,25 +117,25 @@
 			);
 			name = "train-window-app";
 			productName = "train-window-app";
-			productReference = 43561C2C2AEA87EC00918A7F /* train-window-app.app */;
+			productReference = 43561C652AEA8CF200918A7F /* train-window-app.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		43561C242AEA87EC00918A7F /* Project object */ = {
+		43561C5D2AEA8CF200918A7F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					43561C2B2AEA87EC00918A7F = {
+					43561C642AEA8CF200918A7F = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 43561C272AEA87EC00918A7F /* Build configuration list for PBXProject "train-window-app" */;
+			buildConfigurationList = 43561C602AEA8CF200918A7F /* Build configuration list for PBXProject "train-window-app" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,42 +143,45 @@
 				en,
 				Base,
 			);
-			mainGroup = 43561C232AEA87EC00918A7F;
-			productRefGroup = 43561C2D2AEA87EC00918A7F /* Products */;
+			mainGroup = 43561C5C2AEA8CF200918A7F;
+			productRefGroup = 43561C662AEA8CF200918A7F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43561C2B2AEA87EC00918A7F /* train-window-app */,
+				43561C642AEA8CF200918A7F /* train-window-app */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		43561C2A2AEA87EC00918A7F /* Resources */ = {
+		43561C632AEA8CF200918A7F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43561C372AEA87ED00918A7F /* Preview Assets.xcassets in Resources */,
-				43561C342AEA87ED00918A7F /* Assets.xcassets in Resources */,
+				43561C702AEA8CF300918A7F /* Preview Assets.xcassets in Resources */,
+				43561C6D2AEA8CF300918A7F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		43561C282AEA87EC00918A7F /* Sources */ = {
+		43561C612AEA8CF200918A7F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43561C322AEA87EC00918A7F /* ContentView.swift in Sources */,
-				43561C302AEA87EC00918A7F /* train_window_appApp.swift in Sources */,
+				43561C7E2AEA914C00918A7F /* SharePageView.swift in Sources */,
+				43561C6B2AEA8CF200918A7F /* ContentView.swift in Sources */,
+				43561C772AEA8EF700918A7F /* HomePageView.swift in Sources */,
+				43561C7C2AEA910700918A7F /* MapPageView.swift in Sources */,
+				43561C692AEA8CF200918A7F /* train_window_appApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		43561C382AEA87ED00918A7F /* Debug */ = {
+		43561C712AEA8CF300918A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -205,7 +241,7 @@
 			};
 			name = Debug;
 		};
-		43561C392AEA87ED00918A7F /* Release */ = {
+		43561C722AEA8CF300918A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -259,7 +295,7 @@
 			};
 			name = Release;
 		};
-		43561C3B2AEA87ED00918A7F /* Debug */ = {
+		43561C742AEA8CF300918A7F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -288,7 +324,7 @@
 			};
 			name = Debug;
 		};
-		43561C3C2AEA87ED00918A7F /* Release */ = {
+		43561C752AEA8CF300918A7F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -320,25 +356,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43561C272AEA87EC00918A7F /* Build configuration list for PBXProject "train-window-app" */ = {
+		43561C602AEA8CF200918A7F /* Build configuration list for PBXProject "train-window-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43561C382AEA87ED00918A7F /* Debug */,
-				43561C392AEA87ED00918A7F /* Release */,
+				43561C712AEA8CF300918A7F /* Debug */,
+				43561C722AEA8CF300918A7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43561C3A2AEA87ED00918A7F /* Build configuration list for PBXNativeTarget "train-window-app" */ = {
+		43561C732AEA8CF300918A7F /* Build configuration list for PBXNativeTarget "train-window-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43561C3B2AEA87ED00918A7F /* Debug */,
-				43561C3C2AEA87ED00918A7F /* Release */,
+				43561C742AEA8CF300918A7F /* Debug */,
+				43561C752AEA8CF300918A7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 43561C242AEA87EC00918A7F /* Project object */;
+	rootObject = 43561C5D2AEA8CF200918A7F /* Project object */;
 }

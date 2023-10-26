@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selection: TabItem = .homePage
+    
+    enum TabItem {
+        case homePage
+        case mapPage
+        case sharePage
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView(selection: $selection) {
+            HomePageView()
+                .tabItem {
+                    Label("ホーム", systemImage: "star")
+                }
+                .tag(TabItem.homePage)
+            MapPageView()
+                .tabItem {
+                    Label("マップ", systemImage: "star")
+                }
+                .tag(TabItem.mapPage)
+            SharePageView()
+                .tabItem {
+                    Label("シェア", systemImage: "star")
+                }
+                .tag(TabItem.sharePage)
         }
-        .padding()
     }
 }
 
