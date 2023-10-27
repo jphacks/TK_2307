@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct SharePageView: View {
+    var spvm = SharePageViewModel()
+    
     var body: some View {
-        Text("Hello, Share!")
+        VStack{
+            Spacer()
+            Text("Hello, Share!")
+            Spacer()
+            Button(action: {
+                spvm.getPing()
+            }) {
+                Text("get-ping")
+            }
+            Spacer()
+            Button(action: {
+                spvm.postPing()
+            }) {
+                Text("post-ping")
+            }
+            Spacer()
+        }
     }
 }
 
