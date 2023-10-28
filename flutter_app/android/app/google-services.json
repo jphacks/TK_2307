@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "811306390142",
+    "project_id": "trainwindowguide",
+    "storage_bucket": "trainwindowguide.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811306390142:android:d48e3280d878181b787e2f",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811306390142-bcb1r1ibtrqd2vcf6pdsub82d31ht6ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBM7rEJ1kCkmswVMIdldTNOuzSKFm46lF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811306390142-bcb1r1ibtrqd2vcf6pdsub82d31ht6ct.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "811306390142-31kvva01c8gkpf4b758hi7neukii2o0f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
