@@ -51,6 +51,9 @@ class SharePage extends StatelessWidget {
   // ボタンを押した際にモーダルを表示する関数
   void _showModal(BuildContext context) {
     showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
       context: context,
       builder: (BuildContext context) {
         return _buildModalContent(context);
