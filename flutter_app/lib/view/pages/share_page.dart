@@ -173,11 +173,12 @@ class SharePage extends StatelessWidget {
             ),
             // card
             Container(
-              height: 100,
+              height: 300,
               width: 300,
               child: Card(
                 child: Column(
                   children: const [
+                    SizedBox(height: 200),
                     ListTile(
                       title: Text('場所名'),
                       subtitle: Text('説明'),
