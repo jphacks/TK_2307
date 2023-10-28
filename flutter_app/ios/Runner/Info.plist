@@ -10,6 +10,15 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Required to post location information when posting photos and videos.</string>
 	<!-- End of the geolocator Section -->
+
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs access to location.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+	</array>
+
 	<key>CFBundleDisplayName</key>
 	<string>Flutter App</string>
 	<key>CFBundleExecutable</key>
