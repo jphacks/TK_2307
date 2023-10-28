@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/post_spot_model.dart';
+import 'package:flutter_app/util/http_client.dart';
 import 'package:flutter_app/view/components/post_spot_modal.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -22,6 +25,8 @@ class _MapPageState extends State<MapPage> {
     distanceFilter: 100,
   );
 
+  List<PostSpotResponse> _spots = [];
+
   void initState() {
     super.initState();
 
@@ -34,6 +39,9 @@ class _MapPageState extends State<MapPage> {
           ? 'Unknown'
           : '${position.latitude.toString()}, ${position.longitude.toString()}');
     });
+
+    // スポットの取得
+    _getSpots();
   }
 
   void _onMapCreated(GoogleMapController controller) {
@@ -50,6 +58,19 @@ class _MapPageState extends State<MapPage> {
         });
   }
 
+  void _getSpots() async {
+    currentPos = await Geolocator.getCurrentPosition();
+    final res = (jsonDecode((await execPostRequestWithParam("/getSpotsByLocation", {"latitude": currentPos!.latitude, "longitude": currentPos!.longitude })).body) as Map)["spots"] as List;
+    print(res);
+    // res["spots"] 
+  }
+
+  Set<Marker> _createMaker() {
+    return {
+
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +79,7 @@ class _MapPageState extends State<MapPage> {
         GoogleMap(
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
+            markers: _createMaker(),
             initialCameraPosition: CameraPosition(target: _center, zoom: 11.0)),
         Center(
           child: Column(
