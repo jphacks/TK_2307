@@ -41,6 +41,23 @@ class CupertinoSwitchTile extends StatelessWidget {
 class SharePage extends StatelessWidget {
   const SharePage({Key? key});
 
+  // モーダル内のコンテンツを表示するウィジェット
+  Widget _buildModalContent(BuildContext context) {
+    return Container(
+        // モーダルの内容をここに追加
+        );
+  }
+
+  // ボタンを押した際にモーダルを表示する関数
+  void _showModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return _buildModalContent(context);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +104,9 @@ class SharePage extends StatelessWidget {
                 ),
                 fixedSize: Size(250, 60),
               ),
-              onPressed: () {},
+              onPressed: () {
+                _showModal(context);
+              }, // ボタンを押した際にモーダルを表示},
             ),
             SizedBox(height: 15),
             Align(
