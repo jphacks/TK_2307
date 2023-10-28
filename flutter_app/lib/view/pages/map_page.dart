@@ -27,12 +27,12 @@ class _MapPageState extends State<MapPage> {
 
     //現在位置を更新し続ける
     positionStream =
-      Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((Position? position) {
+        Geolocator.getPositionStream(locationSettings: locationSettings)
+            .listen((Position? position) {
       currentPos = position;
       print(position == null
-        ? 'Unknown'
-        : '${position.latitude.toString()}, ${position.longitude.toString()}');
+          ? 'Unknown'
+          : '${position.latitude.toString()}, ${position.longitude.toString()}');
     });
   }
 
@@ -42,43 +42,51 @@ class _MapPageState extends State<MapPage> {
 
   void _showModal() {
     showModalBottomSheet<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return PostSpotModal(currentPosition: currentPos,);
-      }
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return PostSpotModal(
+            currentPosition: currentPos,
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
+        body: Stack(
+      children: [
+        GoogleMap(
             onMapCreated: _onMapCreated,
             myLocationEnabled: true,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 11.0
-            )
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(20),
-                  child: ElevatedButton(
-                    onPressed: _showModal,
-                    child: const Text("押してね")
+            initialCameraPosition: CameraPosition(target: _center, zoom: 11.0)),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: EdgeInsets.all(20),
+                child: ElevatedButton(
+                  onPressed: _showModal,
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFF1AB67F),
+                    minimumSize: Size(130, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  child: const Text(
+                    "投稿する",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold, // 文字を太字にする
+                    ),
                   ),
                 ),
-              ],
-            ),
-          )
-        ],
-      )
-    );
+              ),
+            ],
+          ),
+        )
+      ],
+    ));
   }
 }
-
