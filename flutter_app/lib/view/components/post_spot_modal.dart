@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/post_spot_model.dart';
 import 'package:geolocator/geolocator.dart';
-
-import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../util/http_client.dart';
 
@@ -145,7 +142,8 @@ class _PostSpotModalState extends State<PostSpotModal> {
                           history: HistoryEnum.values[_selectedHistory],
                           time: TimeEnum.values[_selectedTime],
                           name: _spotName,
-                          userId: "aaaaa");
+                          userId: FirebaseAuth.instance.currentUser!.uid,
+                      );
 
                       final res = await execPostRequestWithParam(
                           "/createSpot", postSpotRequest.convert2map());
