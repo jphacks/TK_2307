@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Bottom Navigation',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        primaryColor: Color(0xFF1AB67F),
       ),
       home: MyHomePage(),
     );
@@ -35,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
     //位置情報が許可されていない時に許可をリクエストする
     Future(() async {
       LocationPermission permission = await Geolocator.checkPermission();
-      if(permission == LocationPermission.denied){
+      if (permission == LocationPermission.denied) {
         await Geolocator.requestPermission();
       }
     });
@@ -49,6 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        selectedItemColor: Color(0xFF1AB67F),
+        // showSelectedLabels: false,
+        // showUnselectedLabels: false,
+        iconSize: 30,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
