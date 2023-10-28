@@ -11,10 +11,17 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 admin.initializeApp();
 
-import { CreatePingController } from "./health/CreatePingController";
-import { GetPingController } from "./health/GetPingController";
+import { CreatePingController } from "./controller/health/CreatePingController";
+import { GetPingController } from "./controller/health/GetPingController";
+import { CreateSpotController } from "./controller/spot/CreateSpotController";
+import { GetSpotsByLocationController } from "./controller/spot/GetSpotsByLocationController";
+
 exports.createPing = functions.https.onRequest(CreatePingController);
 exports.getPing = functions.https.onRequest(GetPingController);
+exports.createSpot = functions.https.onRequest(CreateSpotController);
+exports.getSpotsByLocation = functions.https.onRequest(
+  GetSpotsByLocationController
+);
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
