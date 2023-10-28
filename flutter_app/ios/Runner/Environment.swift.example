@@ -1,0 +1,12 @@
+//
+//  Environment.swift
+//  Runner
+//
+//  Created by yuuta on 2023/10/28.
+//
+
+import Foundation
+
+struct Env {
+    static let googleMapApiKey = "API KEY"
+}
