@@ -5,9 +5,8 @@ class SharePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text("here is a SharePage."),
       ),
     );
