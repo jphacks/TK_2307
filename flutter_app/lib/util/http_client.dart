@@ -13,5 +13,5 @@ Future<http.Response> execGetRequestWithParam(String path, Map<String, dynamic> 
 }
 
 Future<http.Response> execPostRequestWithParam(String path, Map<String, dynamic> param) async {
-  return await http.post(Uri.https(DOMAIN, path), body: jsonEncode(param));
+  return await http.post(Uri.https(DOMAIN, path), body: jsonEncode(param), headers: {"Content-Type": "application/json"});
 }

@@ -44,7 +44,7 @@ class _MapPageState extends State<MapPage> {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
-        return PostSpotModal();
+        return PostSpotModal(currentPosition: currentPos,);
       }
     );
   }

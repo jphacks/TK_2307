@@ -1,67 +1,118 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/post_spot_model.dart';
-import 'package:flutter_app/util/http_client.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'dart:async';
 
+import '../../util/http_client.dart';
+
 class PostSpotModal extends StatefulWidget {
-  const PostSpotModal({super.key});
+  final Position? currentPosition;
+
+  const PostSpotModal({super.key, required this.currentPosition});
 
   @override
   _PostSpotModalState createState() => _PostSpotModalState();
 }
 
 class _PostSpotModalState extends State<PostSpotModal> {
+  // 投稿フォームの入力値
+  String _spotName = "";
+  int _selectedSeason = 0;
+  int _selectedHistory = 0;
+  int _selectedTime = 0;
+
+  // 投稿フォームの選択肢
+  final seasonOptions = ["春", "夏", "秋", "冬"];
+  final historyOptions = ["最近", "少し前", "ずっと昔"];
+  final timeOptions = ["昼間", "夕方", "夜"];
+
+  // リクエスト送信時のオブジェクト
   late PostSpotRequest postSpotRequest;
-  Position? currentPos;
-  late StreamSubscription<Position> positionStream;
-  final LocationSettings locationSettings = const LocationSettings(
-    accuracy: LocationAccuracy.high, //正確性:highはAndroid(0-100m),iOS(10m)
-    distanceFilter: 100,
-  );
 
-  void initState() {
-    super.initState();
-
-    //現在位置を更新し続ける
-    positionStream =
-      Geolocator.getPositionStream(locationSettings: locationSettings)
-        .listen((Position? position) {
-      if(position != null) {
-        currentPos = position;
-        postSpotRequest.lat = position.latitude;
-        postSpotRequest.lng = position.longitude;
-      }
+  void _handleSpotNameInput(String e) {
+    setState(() {
+      _spotName = e;
     });
-  }
-
-  Future<Position?> _future() async {
-    currentPos = await Geolocator.getCurrentPosition();
-    return currentPos;
   }
 
   @override
   Widget build(BuildContext context) {
-    postSpotRequest = PostSpotRequest(
-      season: SeasonEnum.spring,
-      history: HistoryEnum.recent,
-      time: TimeEnum.daytime,
-      userId: "aaaaa"
-    );
-
     return (
       Container(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text("地点名"),
-            Text("季節"),
-            Text("年代"),
-            Text("時間帯"),
+            // 地点名の入力
+            TextField(
+              enabled: true,
+              onChanged: _handleSpotNameInput,
+              decoration: const InputDecoration(
+                labelText: "地点名"
+              ),
+            ),
+
+            // 季節の選択
+            Row(
+              children: [
+                for(int i = 0; i < seasonOptions.length; i++) ... {
+                  Radio(value: i, groupValue: _selectedSeason, onChanged: (value) {
+                    setState(() {
+                      _selectedSeason = value!;
+                    });
+                  }),
+                  Text(seasonOptions[i]),
+                }
+              ]
+            ),
+
+            // 年代の選択
+            Row(
+              children: [
+                for(int i = 0; i < historyOptions.length; i++) ... {
+                  Radio(value: i, groupValue: _selectedHistory, onChanged: (value) {
+                    setState(() {
+                      _selectedHistory = value!;
+                    });
+                  }),
+                  Text(historyOptions[i]),
+                }
+              ]
+            ),
+
+            // 時間帯の選択
+            Row(
+              children: [
+                for(int i = 0; i < timeOptions.length; i++) ... {
+                  Radio(value: i, groupValue: _selectedTime, onChanged: (value) {
+                    setState(() {
+                      _selectedTime = value!;
+                    });
+                  }),
+                  Text(timeOptions[i]),
+                }
+              ]
+            ),
+
+            Text("地点名：$_spotName"),
+            Text("季節：$_selectedSeason"),
+            Text("年代：$_selectedHistory"),
+            Text("時間帯：$_selectedTime"),
             ElevatedButton(
-              onPressed: () async {
-                final res = await execPostRequestWithParam("/CreateSpot", postSpotRequest.convert2map());
+              onPressed: _spotName.isEmpty ? null : () async {
+                postSpotRequest = PostSpotRequest(
+                  lat: widget.currentPosition!.latitude,
+                  lng: widget.currentPosition!.longitude,
+                  season: SeasonEnum.values[_selectedSeason],
+                  history: HistoryEnum.values[_selectedHistory],
+                  time: TimeEnum.values[_selectedTime],
+                  name: _spotName,
+                  userId: "aaaaa"
+                );
+
+                final res = await execPostRequestWithParam("/createSpot", postSpotRequest.convert2map());
                 print(res.body);
                 Navigator.of(context).pop();
               },
