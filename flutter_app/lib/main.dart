@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import './view/pages/home_page.dart';
 import './view/pages/map_page.dart';
-import './view/pages/share_page.dart';
+import './view/pages/sample_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [HomePage(), MapPage(), SharePage()];
+  final List<Widget> _pages = [HomePage(), MapPage(), SamplePage()];
+  
 
   @override
   void initState() {
@@ -40,6 +42,16 @@ class _MyHomePageState extends State<MyHomePage> {
         await Geolocator.requestPermission();
       }
     });
+
+    _initPermission();
+  }
+
+  void _initPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+      Permission.locationAlways,
+    ].request();
+    print(statuses[Permission.location]);
   }
 
   @override
