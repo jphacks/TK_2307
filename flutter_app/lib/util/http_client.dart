@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 const DOMAIN = "us-central1-trainwindowguide.cloudfunctions.net";
@@ -11,5 +13,5 @@ Future<http.Response> execGetRequestWithParam(String path, Map<String, dynamic> 
 }
 
 Future<http.Response> execPostRequestWithParam(String path, Map<String, dynamic> param) async {
-  return await http.post(Uri.https(DOMAIN, path), body: param);
+  return await http.post(Uri.https(DOMAIN, path), body: jsonEncode(param));
 }
