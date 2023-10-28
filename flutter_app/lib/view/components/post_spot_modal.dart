@@ -40,87 +40,129 @@ class _PostSpotModalState extends State<PostSpotModal> {
 
   @override
   Widget build(BuildContext context) {
-    return (
-      Container(
+    return (Container(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             // 地点名の入力
-            TextField(
-              enabled: true,
-              onChanged: _handleSpotNameInput,
-              decoration: const InputDecoration(
-                labelText: "地点名"
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8, // 画面幅の80%に設定
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                enabled: true,
+                onChanged: _handleSpotNameInput,
+                decoration: const InputDecoration(labelText: "地点名を入力"),
               ),
             ),
 
             // 季節の選択
             Row(
               children: [
-                for(int i = 0; i < seasonOptions.length; i++) ... {
-                  Radio(value: i, groupValue: _selectedSeason, onChanged: (value) {
-                    setState(() {
-                      _selectedSeason = value!;
-                    });
-                  }),
-                  Text(seasonOptions[i]),
+                for (int i = 0; i < seasonOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedSeason,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedSeason = value!;
+                            });
+                          },
+                        ),
+                        Text(seasonOptions[i]),
+                      ],
+                    ),
+                  ),
                 }
-              ]
+              ],
             ),
 
             // 年代の選択
             Row(
               children: [
-                for(int i = 0; i < historyOptions.length; i++) ... {
-                  Radio(value: i, groupValue: _selectedHistory, onChanged: (value) {
-                    setState(() {
-                      _selectedHistory = value!;
-                    });
-                  }),
-                  Text(historyOptions[i]),
+                for (int i = 0; i < historyOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedHistory,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedHistory = value!;
+                            });
+                          },
+                        ),
+                        Text(historyOptions[i]),
+                      ],
+                    ),
+                  ),
                 }
-              ]
+              ],
             ),
 
             // 時間帯の選択
             Row(
               children: [
-                for(int i = 0; i < timeOptions.length; i++) ... {
-                  Radio(value: i, groupValue: _selectedTime, onChanged: (value) {
-                    setState(() {
-                      _selectedTime = value!;
-                    });
-                  }),
-                  Text(timeOptions[i]),
+                for (int i = 0; i < timeOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedTime,
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedTime = value!;
+                            });
+                          },
+                        ),
+                        Text(timeOptions[i]),
+                      ],
+                    ),
+                  ),
                 }
-              ]
+              ],
             ),
 
-            Text("地点名：$_spotName"),
-            Text("季節：$_selectedSeason"),
-            Text("年代：$_selectedHistory"),
-            Text("時間帯：$_selectedTime"),
+            SizedBox(height: 15),
             ElevatedButton(
-              onPressed: _spotName.isEmpty ? null : () async {
-                postSpotRequest = PostSpotRequest(
-                  lat: widget.currentPosition!.latitude,
-                  lng: widget.currentPosition!.longitude,
-                  season: SeasonEnum.values[_selectedSeason],
-                  history: HistoryEnum.values[_selectedHistory],
-                  time: TimeEnum.values[_selectedTime],
-                  name: _spotName,
-                  userId: "aaaaa"
-                );
+              onPressed: _spotName.isEmpty
+                  ? null
+                  : () async {
+                      postSpotRequest = PostSpotRequest(
+                          lat: widget.currentPosition!.latitude,
+                          lng: widget.currentPosition!.longitude,
+                          season: SeasonEnum.values[_selectedSeason],
+                          history: HistoryEnum.values[_selectedHistory],
+                          time: TimeEnum.values[_selectedTime],
+                          name: _spotName,
+                          userId: "aaaaa");
 
-                final res = await execPostRequestWithParam("/createSpot", postSpotRequest.convert2map());
-                print(res.body);
-                Navigator.of(context).pop();
-              },
+                      final res = await execPostRequestWithParam(
+                          "/createSpot", postSpotRequest.convert2map());
+                      print(res.body);
+                      Navigator.of(context).pop();
+                    },
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF1AB67F),
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // 8.0は角丸の半径（必要に応じて調整）
+                ),
+                minimumSize: Size(90, 40), // ボタンの最小サイズ（必要に応じて調整）
+              ),
               child: const Text("投稿"),
             )
           ],
-        )
-      )
-    );
+        )));
   }
 }
