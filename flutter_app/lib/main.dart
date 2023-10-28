@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import './view/pages/home_page.dart';
 import './view/pages/map_page.dart';
 import './view/pages/share_page.dart';
@@ -26,6 +27,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
   final List<Widget> _pages = [HomePage(), MapPage(), SharePage()];
+
+  @override
+  void initState() {
+    super.initState();
+
+    //位置情報が許可されていない時に許可をリクエストする
+    Future(() async {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if(permission == LocationPermission.denied){
+        await Geolocator.requestPermission();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
