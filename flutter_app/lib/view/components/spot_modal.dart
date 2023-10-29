@@ -28,7 +28,10 @@ class _SpotModalState extends State<SpotModal> {
 
   void getImageFromCloudStrage() async {
     print(widget.spotData.spotDocumentId);
-    final imageRef = FirebaseStorage.instance.ref().child("images").child("${widget.spotData.spotDocumentId}.jpg");
+    final imageRef = FirebaseStorage.instance
+        .ref()
+        .child("images")
+        .child("${widget.spotData.spotDocumentId}.jpg");
 
     try {
       final Uint8List? data = await imageRef.getData();
@@ -44,16 +47,42 @@ class _SpotModalState extends State<SpotModal> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
+      height: 450,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            if(_imageData != null) _imageData!,
-            Text(widget.spotData.name),
-            Text(historyOptions[widget.spotData.history.index]),
-            Text(seasonOptions[widget.spotData.season.index]),
-            Text(timeOptions[widget.spotData.time.index]),
-          ]
-        ),
+        child: Column(children: [
+          if (_imageData != null) _imageData!,
+          SizedBox(height: 5),
+          Text(
+            widget.spotData.name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24, // フォントサイズを適宜調整
+            ),
+          ),
+          Text(
+            '年代：${historyOptions[widget.spotData.history.index]}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14, // フォントサイズを適宜調整
+            ),
+          ),
+          SizedBox(height: 3),
+          Text(
+            '季節：${seasonOptions[widget.spotData.season.index]}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14, // フォントサイズを適宜調整
+            ),
+          ),
+          SizedBox(height: 3),
+          Text(
+            '時間：${timeOptions[widget.spotData.time.index]}',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14, // フォントサイズを適宜調整
+            ),
+          ),
+        ]),
       ),
     );
   }
