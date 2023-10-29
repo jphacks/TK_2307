@@ -24,6 +24,7 @@ GetSpotsByLocationController.post("/", async (req, res) => {
   console.log(nearestStationDocumentId);
   const spots = await spotsCollectionRef
     .where("stationDocumentId", "==", nearestStationDocumentId)
+    .limit(5)
     .get();
 
   var responseData: any[] = [];
