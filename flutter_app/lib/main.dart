@@ -85,9 +85,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-      HomePage(pageIndexCallback: (index) => pageIndexCallback(index),),
+      HomePage(
+        pageIndexCallback: (index) => pageIndexCallback(index),
+      ),
       const MapPage(),
-      LoginPage(loginHandler: loginHandler,)
+      LoginPage(
+        loginHandler: loginHandler,
+      )
     ];
 
     return Scaffold(
@@ -115,8 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   label: 'Map',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.share),
-                  label: 'Share',
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
                 ),
               ],
               onTap: (index) {
