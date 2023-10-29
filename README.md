@@ -44,7 +44,6 @@ https://1drv.ms/p/s!AskvRHPgeAdvjh6nozA5qsTQH7f4
 * ユーザーが親しみがあり、見やすいデザインにするため、交通系アプリで浸透している緑色を中心とした配色に統一
 * ユーザーが触りたくなるようにボタン配置
 * バックグラウンドでも位置情報を取得できる
-  
 
 ## 開発技術
 ### 活用した技術
@@ -69,9 +68,9 @@ https://1drv.ms/p/s!AskvRHPgeAdvjh6nozA5qsTQH7f4
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
-* 独自で開発したものの内容をこちらに記載してください
-* 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
-
-* GISの話
-
-* ちかくのえきとってきてなんかするやつ
+* 1万行を超えるJSONの鉄道データから、欲しい形式のデータ(オブジェクト)に変換し、Firestoreに投入する仕組み<br>
+[CreateStationsBatch.ts](server/functions/src/batch/CreateStationsBatch.ts)
+* スポット取得アルゴリズムは、件数増加の際のスケーラビリティを考慮し、現在地→近くの駅→周辺のスポットという順で取るように<br>
+FirestoreはKeyValueのデータベースだが、外部キー的に各spotDocumentがstationDocumentIdを持ち、駅と紐づいている<br>
+現在地→近くの駅、スポット→近くの駅は、それぞれユークリッド距離を算出して近いものを選ぶ
+[GetSpotsByLocationController.ts](server/functions/src/controller/spot/GetSpotsByLocationController.ts)
