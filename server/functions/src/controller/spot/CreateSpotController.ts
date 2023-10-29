@@ -17,6 +17,7 @@ CreateSpotController.post("/", async (req, res) => {
   const stationDocumentId = await getNearestStationDocumentId(req.body);
   const addSpotResult = await spotsCollectionRef.add({
     stationDocumentId: stationDocumentId,
+    name: req.body.name,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     season: req.body.season,
@@ -28,6 +29,7 @@ CreateSpotController.post("/", async (req, res) => {
   const createdSpot: SpotModel = {
     spotDocumentId: addSpotResult.id,
     stationDocumentId: stationDocumentId,
+    name: req.body.name,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     season: req.body.season,
