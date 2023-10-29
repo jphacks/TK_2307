@@ -23,12 +23,17 @@ interface GeoJSON {
   features: Feature[];
 }
 
-const serviceAccountPath = path.join(__dirname, "./secret-key.json");
-const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+// const serviceAccountPath = path.join(__dirname, "./secret-key.json");
+// const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, "utf8"));
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+// });
+// console.log("Connected to Firebase");
+
+admin.firestore().settings({
+  host: "localhost:8080",
+  ssl: false,
 });
-console.log("Connected to Firebase");
 
 const stationsCollectionRef = admin.firestore().collection("stations");
 console.log("Connected to Firestore");
