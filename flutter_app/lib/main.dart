@@ -77,38 +77,50 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [const HomePage(), const MapPage(), LoginPage(loginHandler: loginHandler,)];
+    final List<Widget> _pages = [
+      const HomePage(),
+      const MapPage(),
+      LoginPage(
+        loginHandler: loginHandler,
+      )
+    ];
 
     return Scaffold(
       body: SafeArea(
-        child: _isLogin ? _pages[_currentIndex] : LoginPage(loginHandler: loginHandler,),
+        child: _isLogin
+            ? _pages[_currentIndex]
+            : LoginPage(
+                loginHandler: loginHandler,
+              ),
       ),
-      bottomNavigationBar: _isLogin ? BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedItemColor: const Color(0xFF1AB67F),
-        // showSelectedLabels: false,
-        // showUnselectedLabels: false,
-        iconSize: 30,
-        items: const [
-           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.share),
-            label: 'Share',
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      )  : null,
+      bottomNavigationBar: _isLogin
+          ? BottomNavigationBar(
+              currentIndex: _currentIndex,
+              selectedItemColor: const Color(0xFF1AB67F),
+              // showSelectedLabels: false,
+              // showUnselectedLabels: false,
+              iconSize: 30,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.map),
+                  label: 'Map',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.share),
+                  label: 'Share',
+                ),
+              ],
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
+            )
+          : null,
     );
   }
 }
