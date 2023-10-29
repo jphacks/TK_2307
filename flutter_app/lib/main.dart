@@ -68,6 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.location,
       Permission.locationAlways,
+      Permission.photos,
+      Permission.camera,
+      Permission.microphone,
     ].request();
     print(statuses[Permission.location]);
   }
