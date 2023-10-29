@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Icon(Icons.person, size: 100, color: Color(0xFF131111)),
+                Icon(Icons.person, size: 100, color: Color(0xFF3D4243)),
                 SizedBox(height: 10),
                 // 1行目 メールアドレス入力用テキストフィールド
                 Container(
@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    cursorColor: Colors.green,
+                    cursorColor: Color(0xFF1AB67F),
                     onChanged: (String value) {
                       setState(() {
                         _email = value;
@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       labelStyle: TextStyle(color: Colors.grey),
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
-                          color: Colors.green, // アクティブ時のボーダーカラーを設定
+                          color: Color(0xFF1AB67F), // アクティブ時のボーダーカラーを設定
                         ),
                       ),
                     ),
@@ -78,8 +78,8 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10.0), // 角の丸みを指定
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
-                        Colors.green), // ボタンの背景色を青色に設定
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFF1AB67F)),
                     minimumSize: MaterialStateProperty.all(
                         Size(150, 50)), // ボタンの最小サイズを設定
                   ),
@@ -113,8 +113,8 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10.0), // 角の丸みを指定
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all(
-                        Colors.green), // ボタンの背景色を緑色に設定
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xFF1AB67F)),
                     minimumSize: MaterialStateProperty.all(
                         Size(150, 50)), // ボタンの最小サイズを設定
                   ),
