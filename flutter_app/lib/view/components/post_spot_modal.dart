@@ -199,17 +199,16 @@ class _PostSpotModalState extends State<PostSpotModal> {
                         userId: FirebaseAuth.instance.currentUser!.uid,
                       );
 
-                      final res = await execPostRequestWithParam(
-                          "/createSpot", postSpotRequest.convert2map());
-                      final resObj = jsonDecode(res.body);
-
-                      final fileRef =
-                          imagesRef.child(resObj["spot"]["spotDocumentId"]);
-                      try {
-                        await fileRef.putFile(File(_image!.path));
-                      } on FirebaseException catch (e) {
-                        print(e);
-                      }
+                        final res = await execPostRequestWithParam(
+                            "/createSpot", postSpotRequest.convert2map());
+                        final resObj = jsonDecode(res.body);
+                        
+                        final fileRef = imagesRef.child("${resObj["spot"]["spotDocumentId"]}.jpg");
+                        try {
+                          await fileRef.putFile(File(_image!.path));
+                        } on FirebaseException catch (e) {
+                          print(e);
+                        }
 
                       print(res.body);
                       Navigator.of(context).pop();

@@ -48,3 +48,38 @@ class PostSpotRequest {
     };
   }
 }
+
+class PostSpotResponse {
+  String stationDocumentId;
+  String spotDocumentId;
+  String name;
+  double latitude;
+  double longitude;
+  SeasonEnum season;
+  HistoryEnum history;
+  TimeEnum time;
+  String userId;
+
+  PostSpotResponse({
+    required this.stationDocumentId,
+    required this.spotDocumentId,
+    required this.name,
+    required this.latitude,
+    required this.longitude,
+    required this.season,
+    required this.history,
+    required this.time,
+    required this.userId,
+  });
+
+  PostSpotResponse.fromJson(Map<String,dynamic> map):
+    stationDocumentId = map["stationDocumentId"],
+    spotDocumentId = map["spotDocumentId"],
+    name = map["name"],
+    latitude = map["latitude"],
+    longitude = map["longitude"],
+    season = SeasonEnum.values[map["season"]],
+    history = HistoryEnum.values[map["history"]],
+    time = TimeEnum.values[map["time"]],
+    userId = map["userId"];
+}
