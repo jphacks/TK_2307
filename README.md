@@ -34,22 +34,29 @@
 ## 開発技術
 ### 活用した技術
 #### API・データ
-* 
-* 
+* Google Maps API
+* 国土数値情報 鉄道データ
 
 #### フレームワーク・ライブラリ・モジュール
-* 
-* 
+##### フロントエンド
+* Flutter
+* Dart
+* Maps SDK for iOS
+* (Maps SDK for Android)
+
+##### バックエンド
+* Firebase(Cloud Functions/Cloud Firestore/Cloud Storage)
+* TypeScript
 
 #### デバイス
-* 
-* 
+* iOS
+* (Android)
 
 ### 独自技術
 #### ハッカソンで開発した独自機能・技術
 * 独自で開発したものの内容をこちらに記載してください
 * 特に力を入れた部分をファイルリンク、またはcommit_idを記載してください。
 
-#### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
-* 
-* 
+* GISの話
+
+* ちかくのえきとってきてなんかするやつ
