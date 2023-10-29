@@ -22,7 +22,7 @@ class CupertinoSwitchTile extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
               color: Colors.white,
@@ -39,17 +39,27 @@ class CupertinoSwitchTile extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key, required this.pageIndexCallback});
+  final Function(int)? pageIndexCallback;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1AB67F),
+      backgroundColor: const Color(0xFF1AB67F),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 150),
+            const SizedBox(height: 150),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: const Color(0xFF131111),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                fixedSize: const Size(300, 60),
+              ),
+              onPressed: () => pageIndexCallback!(1),
               child: const Text(
                 '近くの車窓を見る',
                 style: TextStyle(
@@ -57,18 +67,18 @@ class HomePage extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
-                onPrimary: Color(0xFF131111),
+                onPrimary: const Color(0xFF131111),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                fixedSize: Size(300, 60),
+                fixedSize: const Size(300, 60),
               ),
               onPressed: () {},
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
               child: const Text(
                 '自分の投稿を見る',
                 style: TextStyle(
@@ -76,6 +86,9 @@ class HomePage extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.white,
                 onPrimary: Color(0xFF131111),
@@ -84,10 +97,7 @@ class HomePage extends StatelessWidget {
                 ),
                 fixedSize: Size(300, 60),
               ),
-              onPressed: () {},
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
+              onPressed: () => pageIndexCallback!(2),
               child: const Text(
                 'おすすめの車窓を見る',
                 style: TextStyle(
@@ -95,21 +105,12 @@ class HomePage extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.white,
-                onPrimary: Color(0xFF131111),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                fixedSize: Size(300, 60),
-              ),
-              onPressed: () {},
             ),
-            SizedBox(height: 60),
-            Align(
+            const SizedBox(height: 60),
+            const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 60.0),
+                padding: EdgeInsets.only(left: 60.0),
                 child: Text(
                   '設定',
                   style: TextStyle(
@@ -135,14 +136,14 @@ class HomePage extends StatelessWidget {
               },
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 60, vertical: 25),
+              margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 25),
               child: CupertinoTextField(
                 placeholder: '降りる予定の駅を入力',
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                 onChanged: (text) {
                   // テキストが変更されたときの処理を書く
                 },

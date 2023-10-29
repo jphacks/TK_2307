@@ -75,14 +75,18 @@ class _MyHomePageState extends State<MyHomePage> {
     print(statuses[Permission.location]);
   }
 
+  void pageIndexCallback(int i) {
+    setState(() {
+      _currentIndex = i;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-      const HomePage(),
+      HomePage(pageIndexCallback: (index) => pageIndexCallback(index),),
       const MapPage(),
-      LoginPage(
-        loginHandler: loginHandler,
-      )
+      LoginPage(loginHandler: loginHandler,)
     ];
 
     return Scaffold(
