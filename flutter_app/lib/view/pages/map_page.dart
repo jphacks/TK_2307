@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/model/post_spot_model.dart';
 import 'package:flutter_app/util/http_client.dart';
 import 'package:flutter_app/view/components/post_spot_modal.dart';
+import 'package:flutter_app/view/components/spot_modal.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -38,6 +39,7 @@ class _MapPageState extends State<MapPage> {
       print(position == null
           ? 'Unknown'
           : '${position.latitude.toString()}, ${position.longitude.toString()}');
+      _getSpots();
     });
 
     // スポットの取得
@@ -48,26 +50,54 @@ class _MapPageState extends State<MapPage> {
     mapController = controller;
   }
 
-  void _showModal() {
+  void _showPostModal() {
     showModalBottomSheet<void>(
-        context: context,
-        builder: (BuildContext context) {
-          return PostSpotModal(
-            currentPosition: currentPos,
-          );
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return PostSpotModal(
+          currentPosition: currentPos,
+        );
+      }
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant MapPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _getSpots();
   }
 
   void _getSpots() async {
     currentPos = await Geolocator.getCurrentPosition();
     final res = (jsonDecode((await execPostRequestWithParam("/getSpotsByLocation", {"latitude": currentPos!.latitude, "longitude": currentPos!.longitude })).body) as Map)["spots"] as List;
+
     print(res);
-    // res["spots"] 
+
+    List<PostSpotResponse> _spotsTemp = [];
+    for(int i = 0; i < res.length; i++) {
+      _spotsTemp.add(PostSpotResponse.fromJson(res[i]));
+    }
+
+    setState(() {
+      _spots = _spotsTemp;
+    });
   }
 
   Set<Marker> _createMaker() {
     return {
-
+      for(int i = 0; i < _spots.length; i++) ... {
+        Marker(
+          markerId: MarkerId(_spots[i].name),
+          position: LatLng(_spots[i].latitude, _spots[i].longitude),
+          onTap: () {
+            showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return SpotModal(spotData: _spots[i]);
+            });
+          },
+        )
+      }
     };
   }
 
@@ -88,7 +118,7 @@ class _MapPageState extends State<MapPage> {
               Container(
                 margin: EdgeInsets.all(20),
                 child: ElevatedButton(
-                  onPressed: _showModal,
+                  onPressed: _showPostModal,
                   style: ElevatedButton.styleFrom(
                     primary: Color(0xFF1AB67F),
                     minimumSize: Size(130, 50),

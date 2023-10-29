@@ -51,6 +51,7 @@ class PostSpotRequest {
 
 class PostSpotResponse {
   String stationDocumentId;
+  String spotDocumentId;
   String name;
   double latitude;
   double longitude;
@@ -61,6 +62,7 @@ class PostSpotResponse {
 
   PostSpotResponse({
     required this.stationDocumentId,
+    required this.spotDocumentId,
     required this.name,
     required this.latitude,
     required this.longitude,
@@ -72,6 +74,7 @@ class PostSpotResponse {
 
   PostSpotResponse.fromJson(Map<String,dynamic> map):
     stationDocumentId = map["stationDocumentId"],
+    spotDocumentId = map["spotDocumentId"],
     name = map["name"],
     latitude = map["latitude"],
     longitude = map["longitude"],

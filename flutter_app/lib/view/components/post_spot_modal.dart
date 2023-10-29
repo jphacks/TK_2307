@@ -180,7 +180,7 @@ class _PostSpotModalState extends State<PostSpotModal> {
                             "/createSpot", postSpotRequest.convert2map());
                         final resObj = jsonDecode(res.body);
                         
-                        final fileRef = imagesRef.child(resObj["spot"]["spotDocumentId"]);
+                        final fileRef = imagesRef.child("${resObj["spot"]["spotDocumentId"]}.jpg");
                         try {
                           await fileRef.putFile(File(_image!.path));
                         } on FirebaseException catch (e) {
