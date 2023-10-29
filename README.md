@@ -72,5 +72,5 @@ https://1drv.ms/p/s!AskvRHPgeAdvjh6nozA5qsTQH7f4
 [CreateStationsBatch.ts](server/functions/src/batch/CreateStationsBatch.ts)
 * スポット取得アルゴリズムは、件数増加の際のスケーラビリティを考慮し、現在地→近くの駅→周辺のスポットという順で取るように<br>
 FirestoreはKeyValueのデータベースだが、外部キー的に各spotDocumentがstationDocumentIdを持ち、駅と紐づいている<br>
-現在地→近くの駅、スポット→近くの駅は、それぞれユークリッド距離を算出して近いものを選ぶ
+現在地→近くの駅、スポット→近くの駅は、それぞれユークリッド距離を算出して近いものを選ぶ<br>
 [GetSpotsByLocationController.ts](server/functions/src/controller/spot/GetSpotsByLocationController.ts)
