@@ -17,6 +17,8 @@
 
 
 ### 製品説明（具体的な製品の説明）
+発表資料
+https://1drv.ms/p/s!AskvRHPgeAdvjh6nozA5qsTQH7f4
 ### 特長
 #### 1. 特長1
 #### 2. 特長2
