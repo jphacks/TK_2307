@@ -59,151 +59,172 @@ class _PostSpotModalState extends State<PostSpotModal> {
     return (Container(
         padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // 画像の選択
-              _image == null ? ElevatedButton(
-                onPressed: getImageFromGallery,
-                child: Text(
-                  '写真を選択してください',
-                  style: Theme.of(context).textTheme.labelLarge,
-                )
-              ) : Image.file(File(_image!.path)),
-              
-              // 地点名の入力
-              Container(
-                width: MediaQuery.of(context).size.width * 0.8, // 画面幅の80%に設定
-                padding: const EdgeInsets.all(20),
-                child: TextField(
-                  enabled: true,
-                  onChanged: _handleSpotNameInput,
-                  decoration: const InputDecoration(labelText: "地点名を入力"),
-                ),
-              ),
-
-              // 季節の選択
-              Row(
-                children: [
-                  for (int i = 0; i < seasonOptions.length; i++) ...{
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
-                      child: Row(
-                        children: [
-                          Radio(
-                            value: i,
-                            groupValue: _selectedSeason,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedSeason = value!;
-                              });
-                            },
-                          ),
-                          Text(seasonOptions[i]),
-                        ],
+            child: Column(
+          children: [
+            // 画像の選択
+            _image == null
+                ? ElevatedButton(
+                    onPressed: getImageFromGallery,
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF1AB67F),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
+                      minimumSize: Size(90, 40),
                     ),
-                  }
-                ],
-              ),
-
-              // 年代の選択
-              Row(
-                children: [
-                  for (int i = 0; i < historyOptions.length; i++) ...{
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
-                      child: Row(
-                        children: [
-                          Radio(
-                            value: i,
-                            groupValue: _selectedHistory,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedHistory = value!;
-                              });
-                            },
-                          ),
-                          Text(historyOptions[i]),
-                        ],
-                      ),
+                    child: Text(
+                      '写真を選択してください',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .copyWith(color: Colors.white, fontSize: 14),
                     ),
-                  }
-                ],
-              ),
+                  )
+                : Image.file(File(_image!.path)),
 
-              // 時間帯の選択
-              Row(
-                children: [
-                  for (int i = 0; i < timeOptions.length; i++) ...{
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
-                      child: Row(
-                        children: [
-                          Radio(
-                            value: i,
-                            groupValue: _selectedTime,
-                            onChanged: (value) {
-                              setState(() {
-                                _selectedTime = value!;
-                              });
-                            },
-                          ),
-                          Text(timeOptions[i]),
-                        ],
-                      ),
-                    ),
-                  }
-                ],
-              ),
-
-              SizedBox(height: 15),
-              ElevatedButton(
-                onPressed: _spotName.isEmpty
-                    ? null
-                    : () async {
-                        final imagesRef = FirebaseStorage.instance.ref().child("images");
-
-                        postSpotRequest = PostSpotRequest(
-                            lat: widget.currentPosition!.latitude,
-                            lng: widget.currentPosition!.longitude,
-                            season: SeasonEnum.values[_selectedSeason],
-                            history: HistoryEnum.values[_selectedHistory],
-                            time: TimeEnum.values[_selectedTime],
-                            name: _spotName,
-                            userId: FirebaseAuth.instance.currentUser!.uid,
-                        );
-
-                        final res = await execPostRequestWithParam(
-                            "/createSpot", postSpotRequest.convert2map());
-                        final resObj = jsonDecode(res.body);
-                        
-                        final fileRef = imagesRef.child(resObj["spot"]["spotDocumentId"]);
-                        try {
-                          await fileRef.putFile(File(_image!.path));
-                        } on FirebaseException catch (e) {
-                          print(e);
-                        }
-
-                        print(res.body);
-                        Navigator.of(context).pop();
-                      },
-                style: ElevatedButton.styleFrom(
-                  primary: Color(0xFF1AB67F),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(8.0), // 8.0は角丸の半径（必要に応じて調整）
+            // 地点名の入力
+            Container(
+              width: MediaQuery.of(context).size.width * 0.8, // 画面幅の80%に設定
+              padding: const EdgeInsets.all(20),
+              child: TextField(
+                enabled: true,
+                onChanged: _handleSpotNameInput,
+                decoration: const InputDecoration(
+                  labelText: "地点名を入力",
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green), // 下線の色を指定
                   ),
-                  minimumSize: Size(90, 40), // ボタンの最小サイズ（必要に応じて調整）
+                  labelStyle: TextStyle(color: Colors.grey),
                 ),
-                child: const Text("投稿"),
-              )
-            ],
-          )
-        )
-      )
-    );
+                cursorColor: Colors.green, // カーソルの色を指定
+              ),
+            ),
+
+            // 季節の選択
+            Row(
+              children: [
+                for (int i = 0; i < seasonOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedSeason,
+                          activeColor: Color(0xFF1AB67F),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedSeason = value!;
+                            });
+                          },
+                        ),
+                        Text(seasonOptions[i]),
+                      ],
+                    ),
+                  ),
+                }
+              ],
+            ),
+
+            // 年代の選択
+            Row(
+              children: [
+                for (int i = 0; i < historyOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedHistory,
+                          activeColor: Color(0xFF1AB67F),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedHistory = value!;
+                            });
+                          },
+                        ),
+                        Text(historyOptions[i]),
+                      ],
+                    ),
+                  ),
+                }
+              ],
+            ),
+
+            // 時間帯の選択
+            Row(
+              children: [
+                for (int i = 0; i < timeOptions.length; i++) ...{
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0), // 左側に空白を追加（必要に応じて調整）
+                    child: Row(
+                      children: [
+                        Radio(
+                          value: i,
+                          groupValue: _selectedTime,
+                          activeColor: Color(0xFF1AB67F),
+                          onChanged: (value) {
+                            setState(() {
+                              _selectedTime = value!;
+                            });
+                          },
+                        ),
+                        Text(timeOptions[i]),
+                      ],
+                    ),
+                  ),
+                }
+              ],
+            ),
+
+            SizedBox(height: 15),
+            ElevatedButton(
+              onPressed: _spotName.isEmpty
+                  ? null
+                  : () async {
+                      final imagesRef =
+                          FirebaseStorage.instance.ref().child("images");
+
+                      postSpotRequest = PostSpotRequest(
+                        lat: widget.currentPosition!.latitude,
+                        lng: widget.currentPosition!.longitude,
+                        season: SeasonEnum.values[_selectedSeason],
+                        history: HistoryEnum.values[_selectedHistory],
+                        time: TimeEnum.values[_selectedTime],
+                        name: _spotName,
+                        userId: FirebaseAuth.instance.currentUser!.uid,
+                      );
+
+                      final res = await execPostRequestWithParam(
+                          "/createSpot", postSpotRequest.convert2map());
+                      final resObj = jsonDecode(res.body);
+
+                      final fileRef =
+                          imagesRef.child(resObj["spot"]["spotDocumentId"]);
+                      try {
+                        await fileRef.putFile(File(_image!.path));
+                      } on FirebaseException catch (e) {
+                        print(e);
+                      }
+
+                      print(res.body);
+                      Navigator.of(context).pop();
+                    },
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF1AB67F),
+                shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.circular(8.0), // 8.0は角丸の半径（必要に応じて調整）
+                ),
+                minimumSize: Size(90, 40), // ボタンの最小サイズ（必要に応じて調整）
+              ),
+              child: const Text("投稿"),
+            )
+          ],
+        ))));
   }
 }
