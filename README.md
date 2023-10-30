@@ -1,6 +1,6 @@
 # しぇあまど
 
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2023/07/JPHACKS2023_ogp.png)](https://www.youtube.com/watch?v=yYRQEdfGjEg)
+![しぇあまど](https://github.com/jphacks/TK_2307/assets/67471192/41d4639d-b0af-44dc-b331-949aa43245cc)
 
 ## デモ動画
 https://youtube.com/shorts/GX1jUW0tjAQ?feature=share
